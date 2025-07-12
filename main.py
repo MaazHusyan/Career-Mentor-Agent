@@ -6,8 +6,6 @@ from agents.skill_agent import skillAgent
 from agents.job_agent import getJobListings
 
 load_dotenv()
-openai.api_key = os.getenv("OPEN_ROUTER_API_KEY")
-openai.api_base = os.getenv("OPEN_ROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 AI_MODEL = os.getenv("OPEN_ROUTER_AI_MODEL")
 
 def run_pipeline(user_interest):
