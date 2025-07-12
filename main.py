@@ -10,20 +10,27 @@ openai.api_key = os.getenv("OPEN_ROUTER_API_KEY")
 openai.api_base = os.getenv("OPEN_ROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 AI_MODEL = os.getenv("OPEN_ROUTER_AI_MODEL")
 
+def run_pipeline(user_interest):
+    # Step 1: Always run CareerAgent
+    print("\n👉 Handoff to CareerAgent...\n")
+    context = careerAgent(user_interest)
+    print(context)
 
-if __name__ == "__main__":
-    interest = input("Tell me your interests: ")
-    suggestions = careerAgent(interest)
-    print("\nSuggested Careers:\n")
-    print(suggestions)
-
-    selected_career = input("\nChoose one career to see a skill roadmap: ")
-    roadmap = skillAgent(selected_career)
-    print("\nSkill Roadmap:\n")
+    # Step 2: Ask for SkillAgent
+    selected_field = input("\n📌 Choose one career field from above: ").strip()
+    print("\n👉 Handoff to SkillAgent...\n")
+    roadmap = skillAgent(selected_field)
     print(roadmap)
 
-    show_jobs = input("\nDo you want to see real-world job titles for this career? (yes/no): ").strip().lower()
-    if show_jobs == ["yes", "y", "ye", "yeah", "yep", "sure", "ok", "hmm"]:
-        job_info = getJobListings(selected_career)
-        print("\nJob Roles:\n")
-        print(job_info)
+    # Step 3: Ask for JobAgent
+    run_jobs = input("\n❓ Do you want to see real-world job roles? (yes/no): ").strip().lower()
+    if run_jobs == "yes":
+        print("\n👉 Handoff to JobAgent...\n")
+        context = getJobListings(user_interest)
+        print(context)
+    else:
+        print("✅ Skipped JobAgent.")
+
+if __name__ == "__main__":
+    interest = input("🎯 Tell me your interests: ")
+    run_pipeline(interest)
