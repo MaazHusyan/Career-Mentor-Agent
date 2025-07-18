@@ -7,6 +7,8 @@ from agents.job_agent import getJobListings
 
 load_dotenv()
 AI_MODEL = os.getenv("OPEN_ROUTER_AI_MODEL")
+openai.api_key = os.getenv("OPEN_ROUTER_API_KEY")
+openai.api_base = os.getenv("OPEN_ROUTER_BASE_URL")
 
 def run_pipeline(user_interest):
     # Step 1: Always run CareerAgent

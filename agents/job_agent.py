@@ -19,8 +19,8 @@ Format each in a new line like this:
     response = openai.Completion.create(
         model=AI_MODEL,
         prompt=prompt,
-        max_tokens=300,
-        temperature=0.7
+        max_tokens=500,
+        
     )
 
     return response['choices'][0]['text'].strip()
