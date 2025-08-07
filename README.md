@@ -1,5 +1,4 @@
 # 🚀 Career Mentor Agent
-------------------------
 
 **Gemini Model: A Career Roadmap Builder**
 
