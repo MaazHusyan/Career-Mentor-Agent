@@ -17,12 +17,13 @@ async def get_career_roadmap(career: str):
    print("Career Roadmap Builder Agent initialized. (tool)")
    print(f"Generating roadmap for career: {career}")
    
-   response = await Runner.run(
-       agent = agent,
-       input = career
-   )
-   
-   result = response.final_output.strip()
-   print(f"Generated roadmap: {result}")
-   
-   return result
+   try:
+    response = await Runner.run(
+        starting_agent=agent,
+        input=career
+    )
+    result = response.final_output.strip()
+   except Exception as e:
+    result = f"Error generating roadmap: {str(e)}"
+
+    return result

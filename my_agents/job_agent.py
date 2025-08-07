@@ -12,7 +12,7 @@ def job_agent() -> Agent:
     
     agent = Agent(
         name = "Job Agent",
-        instructions = get_job_instructions(),
+        instructions = get_job_instructions,
         model = geminiModel
     )
     
