@@ -1,6 +1,5 @@
 from agents import Agent, function_tool, Runner
 
-
 from _instructions import get_tool_instructions
 from gemini_model import geminiModel
 
